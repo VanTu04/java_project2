@@ -1,13 +1,33 @@
 package com.javaweb.repository.entity;
 
-public class RentareaEntity {
-	private String id, value, buildingid, createddate, modifieddate, createdby, modifiedby;
+import javax.persistence.Column;
+import javax.persistence.Entity;
+import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
+import javax.persistence.Id;
+import javax.persistence.JoinColumn;
+import javax.persistence.ManyToOne;
+import javax.persistence.Table;
 
-	public String getId() {
+@Entity
+@Table(name = "rentarea")
+public class RentareaEntity {
+	@Id
+	@GeneratedValue(strategy = GenerationType.IDENTITY)
+	private Long id;
+	
+	@Column(name = "value")
+	private String value; 
+	
+	@ManyToOne
+	@JoinColumn(name = "buildingid")
+	private BuildingEntity buildingEntity;
+
+	public Long getId() {
 		return id;
 	}
 
-	public void setId(String id) {
+	public void setId(Long id) {
 		this.id = id;
 	}
 
@@ -19,44 +39,11 @@ public class RentareaEntity {
 		this.value = value;
 	}
 
-	public String getBuildingid() {
-		return buildingid;
+	public BuildingEntity getBuildingEntity() {
+		return buildingEntity;
 	}
 
-	public void setBuildingid(String buildingid) {
-		this.buildingid = buildingid;
+	public void setBuildingEntity(BuildingEntity buildingEntity) {
+		this.buildingEntity = buildingEntity;
 	}
-
-	public String getCreateddate() {
-		return createddate;
-	}
-
-	public void setCreateddate(String createddate) {
-		this.createddate = createddate;
-	}
-
-	public String getModifieddate() {
-		return modifieddate;
-	}
-
-	public void setModifieddate(String modifieddate) {
-		this.modifieddate = modifieddate;
-	}
-
-	public String getCreatedby() {
-		return createdby;
-	}
-
-	public void setCreatedby(String createdby) {
-		this.createdby = createdby;
-	}
-
-	public String getModifiedby() {
-		return modifiedby;
-	}
-
-	public void setModifiedby(String modifiedby) {
-		this.modifiedby = modifiedby;
-	}
-	
 }

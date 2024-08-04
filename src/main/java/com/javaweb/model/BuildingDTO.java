@@ -3,10 +3,10 @@ package com.javaweb.model;
 public class BuildingDTO {
 	private String name;
 	private String address;
-	private String managerName;
-	private String managerPhonenumber;
-	private Long floorArea;
-	private String emptyArea;
+	private String managername;
+	private String managerphonenumber;
+	private Long floorarea;
+	private String emptyarea;
 	private String rentarea;
 	private Long rentprice;
 	private Long servicefee;
@@ -23,29 +23,30 @@ public class BuildingDTO {
 	public void setAddress(String address) {
 		this.address = address;
 	}
-	public String getManagerName() {
-		return managerName;
+
+	public String getManagername() {
+		return managername;
 	}
-	public void setManagerName(String managerName) {
-		this.managerName = managerName;
+	public void setManagername(String managername) {
+		this.managername = managername;
 	}
-	public String getManagerPhonenumber() {
-		return managerPhonenumber;
+	public String getManagerphonenumber() {
+		return managerphonenumber;
 	}
-	public void setManagerPhonenumber(String managerPhonenumber) {
-		this.managerPhonenumber = managerPhonenumber;
+	public void setManagerphonenumber(String managerphonenumber) {
+		this.managerphonenumber = managerphonenumber;
 	}
-	public Long getFloorArea() {
-		return floorArea;
+	public Long getFloorarea() {
+		return floorarea;
 	}
-	public void setFloorArea(Long floorArea) {
-		this.floorArea = floorArea;
+	public void setFloorarea(Long floorarea) {
+		this.floorarea = floorarea;
 	}
-	public String getEmptyArea() {
-		return emptyArea;
+	public String getEmptyarea() {
+		return emptyarea;
 	}
-	public void setEmptyArea(String emptyArea) {
-		this.emptyArea = emptyArea;
+	public void setEmptyarea(String emptyarea) {
+		this.emptyarea = emptyarea;
 	}
 	public String getRentarea() {
 		return rentarea;
