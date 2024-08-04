@@ -35,28 +35,13 @@ public class BuildingRepositoryImpl implements BuildingRepository {
 		}
 	}
 	
-	// normalWhere la khong phai join bang nao vao bang building va khong WHERE cac so sanh >=, <=, in
 	public static void normalWhere(BuildingSearchBuilder buildingSearchBuilder, StringBuilder where) {
-//		for(Map.Entry<String, Object> item : params.entrySet()) {
-//			// kiem tra neu ko phai cac dieu kien de join bang thi thuc hien
-//			if(!item.getKey().equals("staffId") && !item.getKey().equals("typeCode") && !item.getKey().startsWith("rentArea") && !item.getKey().startsWith("rentPrice")) {
-//				String value = item.getValue().toString();
-//				if(CheckNumberutil.isNumber(value)) {
-//					where.append(" AND b." + item.getKey() + " = " + value + " ");
-//				}
-//				else {
-//					where.append(" AND b." + item.getKey() + " LIKE '%" + value + "%' ");
-//				}
-//			}
-//		}
-		
-		// duyet doi tuong
 		try {
 			Field[] fields = BuildingSearchBuilder.class.getDeclaredFields();
 			for(Field item : fields) {
 				item.setAccessible(true);
 				String fieldName = item.getName();
-				if(!fieldName.equals("staffId") && !fieldName.equals("typeCode") && !fieldName.startsWith("rentArea") && !fieldName.startsWith("rentPrice")) {
+				if(!fieldName.equals("staffid") && !fieldName.equals("typeCode") && !fieldName.startsWith("area") && !fieldName.startsWith("rentPrice")) {
 					Object value = item.get(buildingSearchBuilder);
 					if(value != null) {
 						if(item.getType().getName().equals("java.lang.Long") || item.getType().getName().equals("java.lang.Integer")) {
@@ -73,7 +58,6 @@ public class BuildingRepositoryImpl implements BuildingRepository {
 		}
 	}
 	
-	// specialWhere la phai join nhieu bang
 	public static void specialWhere(BuildingSearchBuilder buildingSearchBuilder, StringBuilder where) {
 		Long staffid = buildingSearchBuilder.getStaffId();
 		if(staffid != null) {
@@ -91,12 +75,12 @@ public class BuildingRepositoryImpl implements BuildingRepository {
 		}
 		Long rentPriceTo = buildingSearchBuilder.getRentPriceTo();
 		Long rentPriceFrom = buildingSearchBuilder.getRentPriceFrom();
-		if(rentAreaTo != null || rentAreaFrom != null) {
-			if(rentAreaFrom != null) {
-				where.append(" AND b.value >= " + rentPriceFrom);
+		if(rentPriceTo != null || rentPriceFrom != null) {
+			if(rentPriceFrom != null) {
+				where.append(" AND b.rentprice >= " + rentPriceFrom);
 			}
-			if(rentAreaTo != null) {
-				where.append(" AND b.value <= " + rentPriceTo);
+			if(rentPriceTo != null) {
+				where.append(" AND b.rentprice <= " + rentPriceTo);
 			}
 		}
 		List<String> typeCode = buildingSearchBuilder.getTypeCode();
