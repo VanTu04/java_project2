@@ -66,12 +66,12 @@ public class BuildingRepositoryImpl implements BuildingRepository {
 		}
 		String rentPriceTo = (String)params.get("rentPriceTo");
 		String rentPriceFrom = (String)params.get("rentPriceFrom");
-		if(CheckStringutil.isString(rentAreaTo) || CheckStringutil.isString(rentAreaFrom)) {
-			if(CheckStringutil.isString(rentPriceFrom)) {
-				where.append(" AND b.value >= " + rentPriceFrom);
+		if(CheckStringutil.isString(rentPriceTo) || CheckStringutil.isString(rentPriceFrom)) {
+			if(rentPriceFrom != null) {
+				where.append(" AND b.rentprice >= " + rentPriceFrom);
 			}
-			if(CheckStringutil.isString(rentPriceTo)) {
-				where.append(" AND b.value <= " + rentPriceTo);
+			if(rentPriceTo != null) {
+				where.append(" AND b.rentprice <= " + rentPriceTo);
 			}
 		}
 		if(typeCode != null && typeCode.size() != 0) {
